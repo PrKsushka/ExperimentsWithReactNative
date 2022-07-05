@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import About from "./pages/about/about";
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import Products from "./pages/products/products";
+import ToDoList from "./components/toDoList";
+import Exercise from "./pages/exercise/exercise";
+const RootStack=createNativeStackNavigator();
+function App(props:any) {
 
-export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+          <RootStack.Navigator initialRouteName='Products'>
+              <RootStack.Screen name='Products' component={Products} />
+              <RootStack.Screen name='About' component={About} />
+              <RootStack.Screen name='ToDoList' component={ToDoList} />
+              <RootStack.Screen name='Exercise' component={Exercise} />
+          </RootStack.Navigator>
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
